@@ -23,9 +23,9 @@ WHAT IT SHOWS:
 =======================================================================
 """
 
-streamlit
-pandas
-plotly
+import streamlit
+import pandas
+import plotly
 
 # ─────────────────────────────────────────────────────────────────────
 # PAGE CONFIG
