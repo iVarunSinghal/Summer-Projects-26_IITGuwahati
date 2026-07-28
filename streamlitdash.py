@@ -23,9 +23,10 @@ WHAT IT SHOWS:
 =======================================================================
 """
 
-import streamlit
-import pandas
-import plotly
+import streamlit as st
+import pandas as pd
+import numpy as np
+import plotly.express as px
 
 # ─────────────────────────────────────────────────────────────────────
 # PAGE CONFIG
@@ -143,7 +144,7 @@ with tab1:
             title=f"Top {n_show} Bottleneck Hubs"
         )
         fig.update_layout(height=max(400, n_show*28), template='plotly_dark')
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
     with col_b:
         fig2 = px.scatter(
@@ -156,7 +157,7 @@ with tab1:
             title="Betweenness vs SLA Breach Rate"
         )
         fig2.update_layout(height=max(400, n_show*28), template='plotly_dark')
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width="stretch")
 
     st.subheader("Hub Detail")
     selected_hub = st.selectbox(
@@ -181,7 +182,7 @@ with tab1:
                        markers=True)
         fig3.update_yaxes(tickformat='.0%')
         fig3.update_layout(template='plotly_dark', height=350)
-        st.plotly_chart(fig3, use_container_width=True)
+        st.plotly_chart(fig3, width="stretch")
 
 # ════════════════════════════════════════════════════════════════════
 # TAB 2 — CORRIDOR RISK LOOKUP
@@ -246,7 +247,7 @@ with tab2:
         candidates[['source_name','destination_name','trips','breach_rate_pct']]
         .rename(columns={'source_name':'Source','destination_name':'Destination',
                           'trips':'Trips','breach_rate_pct':'Breach Rate (%)'}),
-        use_container_width=True, hide_index=True
+        width="stretch", hide_index=True
     )
 
 # ════════════════════════════════════════════════════════════════════
@@ -328,7 +329,7 @@ with tab4:
                        title="SLA Breach Rate by Hour & Route Type", markers=True)
         fig4.update_yaxes(tickformat='.0%')
         fig4.update_layout(template='plotly_dark', height=400)
-        st.plotly_chart(fig4, use_container_width=True)
+        st.plotly_chart(fig4, width="stretch")
 
     with col2:
         heat = df.pivot_table(index='hour_of_day', columns='route_type',
@@ -337,7 +338,7 @@ with tab4:
                          title="Delay Factor Heatmap (Hour × Route Type)",
                          labels=dict(color="Delay Factor"))
         fig5.update_layout(template='plotly_dark', height=400)
-        st.plotly_chart(fig5, use_container_width=True)
+        st.plotly_chart(fig5, width="stretch")
 
     st.subheader("Top 10 Chronic Corridors")
     chronic_display = chronic.head(10).copy()
@@ -352,7 +353,7 @@ with tab4:
         .rename(columns={'source_name':'Source','destination_name':'Destination',
                           'route_type':'Route Type','trip_count':'Trips',
                           'mean_factor':'Delay Factor','sla_breach_pct':'SLA Breach %'}),
-        use_container_width=True, hide_index=True
+        width="stretch", hide_index=True
     )
 
 st.divider()
