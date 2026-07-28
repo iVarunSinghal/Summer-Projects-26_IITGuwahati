@@ -23,6 +23,3 @@ The codebase is modularized into specific tasks and capstone scripts:
 *   **`task4_ftl_carting.py`**: Analysis and optimization logic for FTL (Full Truckload) carting routes.
 *   **`task5final.py`**: Final integration of task workflows and network intelligence logic.
 
-
-   git clone [https://github.com/iVarunSinghal/Summer-Projects-26_IITGuwahati.git](https://github.com/iVarunSinghal/Summer-Projects-26_IITGuwahati.git)
-   cd Summer-Projects-26_IITGuwahati
